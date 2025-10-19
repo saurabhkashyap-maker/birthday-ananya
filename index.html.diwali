@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Diwali Wishes</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle, #1a1a1a, #000);
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        overflow: hidden;
+        text-align: center;
+        color: #fff;
+    }
+
+    h1 {
+        margin-top: 50px;
+        font-size: 3em;
+        color: #FFD700;
+        text-shadow: 2px 2px #FF4500;
+    }
+
+    .diya {
+        width: 80px;
+        position: absolute;
+        bottom: 20px;
+        animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        0% { filter: brightness(1); }
+        100% { filter: brightness(2); }
+    }
+
+    .firework {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: yellow;
+        border-radius: 50%;
+        animation: explode 1s linear forwards;
+    }
+
+    @keyframes explode {
+        0% { transform: scale(0); opacity: 1; }
+        100% { transform: scale(3); opacity: 0; }
+    }
+
+    .confetti {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        opacity: 0.9;
+        animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10px) rotate(0deg); }
+        100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .lantern {
+        position: absolute;
+        width: 50px;
+        height: 70px;
+        border-radius: 20px;
+        background: linear-gradient(#FFA500, #FF4500);
+        animation: floatLantern linear infinite;
+    }
+
+    @keyframes floatLantern {
+        0% { transform: translateY(100vh) rotate(0deg); }
+        100% { transform: translateY(-150px) rotate(360deg); }
+    }
+
+    #playMusicBtn {
+        padding: 12px 20px;
+        font-size:16px;
+        margin-top: 20px;
+        cursor:pointer;
+        background-color: #FF4500;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px #000;
+        transition: 0.3s;
+    }
+
+    #playMusicBtn:hover {
+        transform: scale(1.1);
+        background-color: #FFD700;
+        color: #000;
+    }
+
+    #message {
+        font-size: 1.5em;
+        margin-top: 20px;
+        color: #FFD700;
+        text-shadow: 1px 1px #FF4500;
+    }
+</style>
+</head>
+<body>
+
+<h1>🎆 Happy Diwali! 🪔</h1>
+
+<!-- Diyas -->
+<img src="https://i.imgur.com/1c2QJ8S.png" class="diya" style="left:20px;" alt="Diya">
+<img src="https://i.imgur.com/1c2QJ8S.png" class="diya" style="left:150px;" alt="Diya">
+<img src="https://i.imgur.com/1c2QJ8S.png" class="diya" style="left:280px;" alt="Diya">
+
+<p id="message"></p>
+
+<button id="playMusicBtn">🎵 Play Diwali Music</button>
+
+<audio id="diwaliSound">
+    <source src="https://www.soundjay.com/misc/festive-bell-01.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    // Animated greeting text
+    const messageText = "May your life be full of lights, happiness, and prosperity! ✨";
+    const messageEl = document.getElementById('message');
+    let index = 0;
+    function typeText() {
+        if(index < messageText.length){
+            messageEl.innerHTML += messageText[index];
+            index++;
+            setTimeout(typeText, 100);
+        }
+    }
+    typeText();
+
+    // Fireworks
+    function createFirework() {
+        const fireworkCount = 20;
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight/2;
+
+        for(let i=0;i<fireworkCount;i++){
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.left = x + 'px';
+            firework.style.top = y + 'px';
+            firework.style.backgroundColor = hsl(${Math.random()*360},100%,50%);
+            firework.style.transform = translate(${Math.cos(i*18)*50}px, ${Math.sin(i*18)*50}px);
+            document.body.appendChild(firework);
+            setTimeout(() => firework.remove(), 1000);
+        }
+    }
+    setInterval(createFirework, 1500);
+
+    // Confetti
+    function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.backgroundColor = hsl(${Math.random()*360}, 100%, 50%);
+        confetti.style.animationDuration = 3 + Math.random()*2 + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+    }
+    setInterval(createConfetti, 200);
+
+    // Floating lanterns
+    function createLantern() {
+        const lantern = document.createElement('div');
+        lantern.classList.add('lantern');
+        lantern.style.left = Math.random() * window.innerWidth + 'px';
+        lantern.style.animationDuration = 8 + Math.random()*4 + 's';
+        document.body.appendChild(lantern);
+        setTimeout(() => lantern.remove(), 12000);
+    }
+    setInterval(createLantern, 1000);
+
+    // Music button
+    const sound = document.getElementById('diwaliSound');
+    const playBtn = document.getElementById('playMusicBtn');
+    playBtn.addEventListener('click', () => {
+        sound.play();
+        playBtn.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
