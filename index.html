@@ -24,8 +24,8 @@
     #cake {
         width: 200px;
         margin-top: 30px;
-        animation: float 2s ease-in-out infinite alternate;
         position: relative;
+        animation: float 2s ease-in-out infinite alternate;
     }
 
     @keyframes float {
@@ -34,7 +34,7 @@
     }
 
     #teddy {
-        width: 150px;
+        width: 120px;
         position: absolute;
         bottom: 20px;
         left: 20px;
@@ -46,47 +46,6 @@
         100% { transform: rotate(10deg); }
     }
 
-    .firework, .sparkle {
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: yellow;
-        border-radius: 50%;
-        animation: explode 1s linear infinite;
-    }
-
-    @keyframes explode {
-        0% { transform: scale(0); opacity: 1; }
-        100% { transform: scale(3); opacity: 0; }
-    }
-
-    .confetti {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        opacity: 0.8;
-        animation: fall linear infinite;
-        border-radius: 50%;
-    }
-
-    @keyframes fall {
-        0% { transform: translateY(-10px) rotate(0deg); }
-        100% { transform: translateY(100vh) rotate(360deg); }
-    }
-
-    .balloon {
-        position: absolute;
-        width: 50px;
-        height: 70px;
-        border-radius: 50%;
-        animation: rise linear infinite;
-    }
-
-    @keyframes rise {
-        0% { transform: translateY(100vh); }
-        100% { transform: translateY(-100px); }
-    }
-
     #message {
         font-size: 1.5em;
         color: #ff4500;
@@ -94,31 +53,27 @@
     }
 
     .candle {
-        width: 8px;
-        height: 30px;
+        width: 6px;
+        height: 25px;
         background: orange;
         position: absolute;
-        top: -30px;
-        left: 50%;
-        margin-left: -4px;
+        top: -25px;
         border-radius: 2px;
     }
 
     .flame {
-        width: 10px;
-        height: 15px;
+        width: 8px;
+        height: 12px;
         background: yellow;
         border-radius: 50%;
         position: absolute;
-        top: -20px;
-        left: 50%;
-        margin-left: -5px;
+        top: -18px;
         animation: flicker 0.3s infinite alternate;
     }
 
     @keyframes flicker {
         0% { transform: scale(1); opacity:1; }
-        100% { transform: scale(1.3); opacity:0.7; }
+        100% { transform: scale(1.2); opacity:0.7; }
     }
 
     #playMusicBtn {
@@ -138,6 +93,33 @@
         transform: scale(1.1);
         background-color: #ff1493;
     }
+
+    .balloon {
+        position: absolute;
+        width: 40px;
+        height: 60px;
+        border-radius: 50%;
+        animation: rise linear infinite;
+    }
+
+    @keyframes rise {
+        0% { transform: translateY(100vh); }
+        100% { transform: translateY(-100px); }
+    }
+
+    .confetti {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        opacity: 0.8;
+        border-radius: 50%;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10px) rotate(0deg); }
+        100% { transform: translateY(100vh) rotate(360deg); }
+    }
 </style>
 </head>
 <body>
@@ -145,56 +127,21 @@
 <h1>Happy Birthday Ananya! 🎉</h1>
 
 <div id="cakeContainer" style="position: relative; display: inline-block;">
-    <img src="https://i.imgur.com/3yZ6Y0C.png" id="cake" alt="Cake">
+    <img src="cake.png" id="cake" alt="Cake">
 </div>
 
-<img src="https://i.imgur.com/7y1fBqU.png" id="teddy" alt="Teddy">
+<img src="teddy.png" id="teddy" alt="Teddy">
 
 <p id="message"></p>
 
 <button id="playMusicBtn">🎵 Play Birthday Music</button>
 
 <audio id="birthdaySound">
-  <source src="https://www.soundjay.com/human/birthday-song-01.mp3" type="audio/mpeg">
+  <source src="birthday-song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    // Fireworks
-    function createFirework() {
-        const firework = document.createElement('div');
-        firework.classList.add('firework');
-        firework.style.left = Math.random() * window.innerWidth + 'px';
-        firework.style.top = Math.random() * window.innerHeight + 'px';
-        document.body.appendChild(firework);
-        setTimeout(() => firework.remove(), 1000);
-    }
-    setInterval(createFirework, 300);
-
-    // Confetti
-    function createConfetti() {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.backgroundColor = hsl(${Math.random() * 360}, 100%, 50%);
-        confetti.style.animationDuration = 3 + Math.random() * 2 + 's';
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 5000);
-    }
-    setInterval(createConfetti, 150);
-
-    // Balloons
-    function createBalloon() {
-        const balloon = document.createElement('div');
-        balloon.classList.add('balloon');
-        balloon.style.left = Math.random() * window.innerWidth + 'px';
-        balloon.style.backgroundColor = hsl(${Math.random() * 360}, 100%, 50%);
-        balloon.style.animationDuration = 5 + Math.random() * 5 + 's';
-        document.body.appendChild(balloon);
-        setTimeout(() => balloon.remove(), 10000);
-    }
-    setInterval(createBalloon, 500);
-
-    // Cake candles and flames
+    // Candles and flames
     const cakeContainer = document.getElementById('cakeContainer');
     for(let i=0;i<3;i++){
         const candle = document.createElement('div');
@@ -208,7 +155,7 @@
         cakeContainer.appendChild(flame);
     }
 
-    // Animated text letter by letter
+    // Animated text
     const messageText = "Wishing you a day full of love, laughter, and joy! 💖";
     const messageEl = document.getElementById('message');
     let index = 0;
@@ -226,8 +173,32 @@
     const playBtn = document.getElementById('playMusicBtn');
     playBtn.addEventListener('click', () => {
         sound.play();
-        playBtn.style.display = 'none'; // hide button after click
+        playBtn.style.display = 'none';
     });
+
+    // Simple balloons
+    function createBalloon() {
+        const balloon = document.createElement('div');
+        balloon.classList.add('balloon');
+        balloon.style.left = Math.random() * window.innerWidth + 'px';
+        balloon.style.backgroundColor = hsl(${Math.random()*360}, 100%, 50%);
+        balloon.style.animationDuration = 6 + Math.random()*4 + 's';
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 10000);
+    }
+    setInterval(createBalloon, 700);
+
+    // Simple confetti
+    function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.backgroundColor = hsl(${Math.random()*360}, 100%, 50%);
+        confetti.style.animationDuration = 3 + Math.random()*2 + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+    }
+    setInterval(createConfetti, 300);
 </script>
 
 </body>
