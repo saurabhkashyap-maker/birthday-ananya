@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(to top, #ffecd2, #fcb69f);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    color: #fff;
+  }
+  h1 {
+    margin-top: 50px;
+    font-size: 3em;
+    text-shadow: 2px 2px 5px #000;
+  }
+  .balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background: red;
+    border-radius: 50% 50% 50% 50%;
+    animation: float 6s infinite ease-in-out;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg);}
+    50% { transform: translateY(-400px) rotate(20deg);}
+    100% { transform: translateY(0) rotate(0deg);}
+  }
+  .cake {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 150px;
+    background: pink;
+    border-radius: 20px;
+  }
+  .teddy {
+    position: absolute;
+    bottom: 50px;
+    left: 30%;
+    width: 100px;
+    height: 120px;
+    background: brown;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<h1>🎉 Happy Birthday! 🎂</h1>
+
+<div class="cake"></div>
+<div class="teddy"></div>
+
+<script>
+  // Create multiple balloons
+  for(let i = 0; i < 10; i++) {
+    const balloon = document.createElement('div');
+    balloon.className = 'balloon';
+    balloon.style.left = Math.random() * window.innerWidth + 'px';
+    balloon.style.background = ['red','blue','green','yellow','purple'][Math.floor(Math.random()*5)];
+    balloon.style.animationDuration = (4 + Math.random()*4) + 's';
+    document.body.appendChild(balloon);
+  }
+</script>
+
+<audio autoplay loop>
+  <source src="birthday_song.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
